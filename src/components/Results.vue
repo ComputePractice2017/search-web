@@ -1,46 +1,28 @@
 <template>
-    <div class="results">
-        <div class="container">
-            <table class="table">
-  <thead>
-    <tr>
-      <th>page_title</th>
-      <th>url</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr v-for="result in results">
-      <td>{{result.page_title}}</td>
-      <td>{{result.url}}</td>
-    </tr>
-  </tbody>
-</table>
+  <div class="results">
+    <div class="container">
+      <form>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Поисковая страница</label>
+          <br>
+          <input v-model="message" placeholder="Введите запрос" size="100">
+          <button type="button" class="btn btn-primary btn-sm">Поиск</button>
         </div>
+      </form>
     </div>
+  </div>
 </template>
 
 <script>
-export default {
-  name: 'hello',
-  data () {
-    return {
-      results: [
-        {
-          'id': 1,
-          'page_title': 'Bootstrap Vue',
-          'url': 'bootstrap-vue.js.org'
-        },
-        {
-          'id': 2,
-          'page_title': 'C++ — Википедия',
-          'url': 'ru.wikipedia.org/wiki/C%2B%2B'
-        }
-      ]
-    }
-  }
-}
+
 </script>
 
 <style>
+input{
 
+  border: 2px groove #B9B9BC;
+}
+button{
+  height: 30px;
+}
 </style>
