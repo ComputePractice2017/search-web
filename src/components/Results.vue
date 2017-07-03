@@ -1,25 +1,68 @@
 <template>
   <div class="results">
+    <!-- картинка -->
     <div class="logo">
     <img src="https://pp.userapi.com/c841328/v841328106/4785/AGH_PNmeyes.jpg" alt="1" width="60%" height="90%">
     </div>
     <div class="container">
       <form>
+        <!-- Главная страница -->
         <div class="form-group">
           <form class="form-wrapper">
-            <input id="search" placeholder="Введите запрос ..." required="" type="text">
+            <input id="search" placeholder="Введите запрос ..." required="" type="text" v-model="search">
             <input  type="submit" id="submit" value="Поиск">
           </form>
           <br><br><br><br><br><br><br>
           <H1>ИАТЭ НИЯУ МИФИ</H1>
           <H1><font size="2">Практика 2017</font></H1>
         </div>
+        <!-- Страница с результатами -->
+        <div>
+
+        </div>    
       </form>
     </div>
   </div>
 </template>
 
 <script>
+
+  export default {
+    data () {
+      return {
+        // Список результатов
+        resultslist: [
+          {
+            'id': 1,
+            'name': 'Программирование — Википедия',
+            'url': 'ru.wikipedia.org/wiki/Программирование'
+          },
+          {
+            'id': 2,
+            'name': 'Что такое программирование? Программирование для...',
+            'url': 'fb.ru/article/174427/chto-takoe-programmirovanie-programmirovanie-dlya-nachinayuschih'
+          },
+          {
+            'id': 3,
+            'name': 'Основы программирования - курс для начинающих...',
+            'url': 'codingcraft.ru/programming_for_beginners.php'
+          }
+        ],
+        edit: false,
+        search: ''
+      }
+    },
+
+    /* проверка строки на пустоту */
+    computed: {
+      container: function () {
+        var search = this.search
+        if (this.search !== '') {
+          return '' /* нужно удалить картинку и загрузить результаты */
+        }
+      }
+    }
+  }
 
 </script>
 
