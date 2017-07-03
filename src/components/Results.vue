@@ -6,9 +6,6 @@
     <div class="container">
       <form>
         <div class="form-group">
-          <!--<input v-model="message" placeholder="Введите запрос" size="70">
-          <button type="button" class="btn btn-primary btn-sm">Поиск</button>-->
-          <!--Форма поиска-->
           <form class="form-wrapper">
             <input id="search" placeholder="Введите запрос ..." required="" type="text">
             <input  type="submit" id="submit" value="Поиск">
@@ -27,21 +24,6 @@
 </script>
 
 <style>
-/*input{
-  border: 2px groove #B9B9BC;
-}
-
-button{
-  height: 30px;
-}
-
-.results{
-  position: relative;
-}
-
-label{
-  font-size: large;
-}*/
 
 .logo{
   padding: 2%;
@@ -56,7 +38,7 @@ label{
 .form-wrapper {
     width: 600px;
     padding: 8px;
-    margin: 10px auto; /*было 100*/
+    margin: 10px auto; 
     overflow: hidden;
     border-width: 1px;
     border-style: solid;
