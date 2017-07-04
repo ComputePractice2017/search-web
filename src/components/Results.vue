@@ -4,24 +4,39 @@
     <div v-if="search === ''" class="logo">
     <img src="https://pp.userapi.com/c841328/v841328106/4785/AGH_PNmeyes.jpg" alt="1" width="60%" height="90%">
     </div>
+    
     <div class="container">
       <form>
         <!-- Главная страница -->
         <div class="form-group">
+          <div v-if="search !== ''" class="img">
+            <img src="https://pp.userapi.com/c841328/v841328106/4785/AGH_PNmeyes.jpg" alt="1" width="15%" height="40%">
+          </div>
           <form class="form-wrapper">
             <input id="search" placeholder="Введите запрос ..." required="" type="text" v-model="search">
             <input  type="submit" id="submit" value="Поиск">
           </form>
-          <br><br><br><br><br><br><br>
-          <H1>ИАТЭ НИЯУ МИФИ</H1>
-          <H1><font size="2">Практика 2017</font></H1>
+          <div v-if="search === ''">
+            <br><br><br><br><br><br><br>
+            <H1>ИАТЭ НИЯУ МИФИ</H1>
+            <H1>
+              <font size="2">Практика 2017</font>
+            </H1>
+          </div>
         </div>
-        {{search}}
         <!-- Страница с результатами -->
-        <div v-if="search !== ''">
-          <div v-for="item in resultslist"> 
-            {{item}}
-          </div>   
+        <div v-if="search !== ''" class="lists">
+          <H1>Результаты поиска:</H1>
+          <div v-for="item in lists" class="text-left"> <!-- выравнивание списка по левому краю -->
+            <ol class="list-group">
+              <li v-for="list in lists">
+                <h1>
+                  <strong style="color:#1f69a5" >{{ list.name }}</strong> <!-- полужирный шрифт -->
+                </h1>
+                <p style="color:#1B5F0A"><ins>{{ list.url }}</ins></p>
+              </li>
+            </ol> 
+          </div> <br>  
         </div>    
       </form>
     </div>
@@ -34,21 +49,21 @@
     data () {
       return {
         // Список результатов
-        resultslist: [
+        lists: [
           {
             'id': 1,
-            'name': 'Программирование — Википедия',
-            'url': 'ru.wikipedia.org/wiki/Программирование'
+            'name': '2017 год — Википедия',
+            'url': 'ru.wikipedia.org/wiki/2017_год'
           },
           {
             'id': 2,
-            'name': 'Что такое программирование? Программирование для...',
-            'url': 'fb.ru/article/174427/chto-takoe-programmirovanie-programmirovanie-dlya-nachinayuschih'
+            'name': 'Год: 2017 - Навигатор по фильмам на КиноПоиск.ru',
+            'url': 'www.kinopoisk.ru/lists/m_act[year]/2017/'
           },
           {
             'id': 3,
-            'name': 'Основы программирования - курс для начинающих...',
-            'url': 'codingcraft.ru/programming_for_beginners.php'
+            'name': 'Календарь 2017 с номерами недель и праздниками',
+            'url': 'kalendar-365.ru/2017'
           }
         ],
         edit: false,
@@ -56,12 +71,12 @@
       }
     },
 
-    /* проверка строки на пустоту */
+    /* проверка строки на наличие символов */
     computed: {
       container: function () {
         // var search = this.search
         if (this.search !== '') {
-          return '' /* нужно удалить картинку и загрузить результаты */
+          return ''
         }
       }
     }
@@ -70,6 +85,18 @@
 </script>
 
 <style>
+
+.list-group {
+  display: inline-block;
+}
+
+.lists  li /*интервал между элементами списка*/
+{
+width: 680px; 
+margin-top: 1em;
+margin-left:220px;
+background-color:#EEF2F8;
+}
 
 .logo{
   padding: 2%;
