@@ -1,7 +1,7 @@
 <template>
   <div class="results">
     <!-- картинка -->
-    <div class="logo">
+    <div v-if="search === ''" class="logo">
     <img src="https://pp.userapi.com/c841328/v841328106/4785/AGH_PNmeyes.jpg" alt="1" width="60%" height="90%">
     </div>
     <div class="container">
@@ -16,9 +16,12 @@
           <H1>ИАТЭ НИЯУ МИФИ</H1>
           <H1><font size="2">Практика 2017</font></H1>
         </div>
+        {{search}}
         <!-- Страница с результатами -->
-        <div>
-
+        <div v-if="search !== ''">
+          <div v-for="item in resultslist"> 
+            {{item}}
+          </div>   
         </div>    
       </form>
     </div>
@@ -56,7 +59,7 @@
     /* проверка строки на пустоту */
     computed: {
       container: function () {
-        var search = this.search
+        // var search = this.search
         if (this.search !== '') {
           return '' /* нужно удалить картинку и загрузить результаты */
         }
