@@ -4,14 +4,10 @@
     <div v-if="search === ''" class="logo">
     <img src="https://pp.userapi.com/c841328/v841328106/4785/AGH_PNmeyes.jpg" alt="1" width="60%" height="90%">
     </div>
-    
     <div class="container">
       <form>
         <!-- Главная страница -->
         <div class="form-group">
-          <div v-if="search !== ''" class="img">
-            <img src="https://pp.userapi.com/c841328/v841328106/4785/AGH_PNmeyes.jpg" alt="1" width="15%" height="40%">
-          </div>
           <form class="form-wrapper">
             <input id="search" placeholder="Введите запрос ..." required="" type="text" v-model="search">
             <input  type="submit" id="submit" value="Поиск">
@@ -27,13 +23,13 @@
         <!-- Страница с результатами -->
         <div v-if="search !== ''" class="lists">
           <H1>Результаты поиска:</H1>
-          <div v-for="item in lists" class="text-left"> <!-- выравнивание списка по левому краю -->
+          <div class="text-left"> <!-- выравнивание списка по левому краю -->
             <ol class="list-group">
               <li v-for="list in lists">
                 <h1>
-                  <strong style="color:#1f69a5" >{{ list.name }}</strong> <!-- полужирный шрифт -->
+                  <p><a :href="list.url" target="_blank">{{ list.url }}</a></p>
                 </h1>
-                <p style="color:#1B5F0A"><ins>{{ list.url }}</ins></p>
+                <p style="color:#1B5F0A"><ins>{{ list.text }}</ins></p>
               </li>
             </ol> 
           </div> <br>  
@@ -52,18 +48,18 @@
         lists: [
           {
             'id': 1,
-            'name': '2017 год — Википедия',
-            'url': 'ru.wikipedia.org/wiki/2017_год'
+            'text': '2017 год — Википедия',
+            'url': '//ru.wikipedia.org/wiki/2017_год'
           },
           {
             'id': 2,
-            'name': 'Год: 2017 - Навигатор по фильмам на КиноПоиск.ru',
-            'url': 'www.kinopoisk.ru/lists/m_act[year]/2017/'
+            'text': 'Год: 2017 - Навигатор по фильмам на КиноПоиск.ru',
+            'url': '//www.kinopoisk.ru/lists/m_act[year]/2017/'
           },
           {
             'id': 3,
-            'name': 'Календарь 2017 с номерами недель и праздниками',
-            'url': 'kalendar-365.ru/2017'
+            'text': 'Календарь 2017 с номерами недель и праздниками',
+            'url': '//kalendar-365.ru/2017'
           }
         ],
         edit: false,
@@ -71,12 +67,16 @@
       }
     },
 
-    /* проверка строки на наличие символов */
+    /*  */
     computed: {
       container: function () {
-        // var search = this.search
         if (this.search !== '') {
-          return ''
+          this.$http.get('/search/' + this.search).then(response => {
+            this.contacts = response.body
+            console.log(this.contacts)
+          }, response => {
+            console.log(response)
+          })
         }
       }
     }
