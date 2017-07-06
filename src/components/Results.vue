@@ -9,7 +9,7 @@
         <!-- Главная страница -->
         <div class="form-group">
           <form class="form-wrapper">
-            <input id="search" placeholder="Введите запрос ..." required="" type="text" v-model="search">
+            <input v-on:change="container()" id="search" placeholder="Введите запрос ..." required="" type="text" v-model="search">
             <input  type="submit" id="submit" value="Поиск">
           </form>
           <div v-if="search === ''">
@@ -68,11 +68,12 @@
     },
 
     /*  */
-    computed: {
+    methods: {
       container: function () {
         if (this.search !== '') {
+          console.log('Request' + this.search)
           this.$http.get('/search/' + this.search).then(response => {
-            this.contacts = response.body
+            this.lists = response.body
             console.log(this.contacts)
           }, response => {
             console.log(response)
